@@ -1,0 +1,42 @@
+filename="saminput.txt"
+ans={}
+with open(filename) as fh:
+    for inp in fh:
+        (key,val)=inp.strip().split(':',1)
+        ans[key]=int(val.strip())
+
+
+sorted_values = sorted(ans.values()) # Sort the values
+
+sorted_dict = {}
+
+for i in sorted_values:
+    for k in ans.keys():
+        if ans[k] == i:
+            sorted_dict[k] = ans[k]
+            break
+
+
+
+l=sorted_dict.values()
+valueslist=list(l)
+
+
+n=int(input("number of employees:"))
+temp1=0
+temp=valueslist[0+n]-valueslist[0]
+count=len(valueslist)-5
+for i in range(count):
+    
+    temp1=valueslist[i+(n-1)]-valueslist[i]
+    if(temp1<temp):
+        temp=temp1
+        x=i
+k=sorted_dict.keys()
+keyslist=list(k)
+from contextlib import redirect_stdout
+
+with open('output.txt', 'w') as f:
+    with redirect_stdout(f):
+        for i in range(x,x+n):
+            print(keyslist[i],":",valueslist[i])
